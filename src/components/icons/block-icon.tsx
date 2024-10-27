@@ -31,7 +31,7 @@ const BlockIcon: React.FC<IProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="20" height="50" rx="4" fill="#FF5555" />
+      <rect width="20" height="50" rx="4" className="fill-primary-normal" />
     </svg>
   );
 };

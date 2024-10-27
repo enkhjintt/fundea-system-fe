@@ -1,5 +1,5 @@
 import LoginForm from "@/components/auth/login/login-form";
-import Wrapper from "@/components/wrapper";
+
 import Image from "next/image";
 
 const LoginPage = () => {

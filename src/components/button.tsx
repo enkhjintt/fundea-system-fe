@@ -12,7 +12,7 @@ const VARIANT = {
   gradient:
     "bg-gradient-to-r to-secondary-normal from-pink-normal border-none shadow-xs enabled:hover:bg-secondary-lighter enabled:active:bg-secondary-light disabled:bg-secondary-dark disabled:border-secondary-dark",
   white: "bg-base-white text-primary-normal border border-base-white ",
-  link: "",
+  link: "bg-transparent text-medium text-gray-700 underline leading-4",
   rectangle:
     "w-40 h-full bg-base-white border-primary-normal text-primary-normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal enabled:hover:text-base-white enabled:active:bg-secondary-light ",
   text: "bg-base-white  text-primary-normal border-2 border-primary normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal ",
@@ -27,7 +27,7 @@ const TEXT_VARIANT = {
   secondary: "text-gray-500",
   "secondary-red": "font-bold text-error-normal text-sm leading-6",
   white: "font-bold text-gray-800",
-  gradient: "",
+  gradient: "font-normal text-base-white text-sm leading-6",
   link: "",
   rectangle: "font-medium",
   text: "",

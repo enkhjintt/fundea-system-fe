@@ -15,7 +15,7 @@ type IProps = {};
 const ProjectCategory: React.FC<IProps> = ({}) => {
   return (
     <>
-      <PageTitle title={"Төслийн ангилал"} />
+ 
       <div className="flex flex-row gap-4 h-36">
         <Button
           variant="rectangle"
