@@ -30,7 +30,7 @@ const ImageContent: React.FC<ImageContentProps> = ({
           <Image src={imageSrc} alt={title} layout="fill" objectFit="cover" />
         )}
       </div>
-      <div className=" h-1/4 flex flex-col p-2 content-center">
+      <div className=" h-1/4 flex flex-col px-6 content-center">
         <h3 className="text-lg  font-medium text-gray-800">{title}</h3>
         <div className="flex justify-between">
           <p className="text-sm  text-gray-500">{date}</p>
