@@ -8,7 +8,7 @@ const VARIANT = {
   none: "bg-base-transparent text-primary-normal border border-primary-normal",
   primary:
     "bg-primary-normal border border-primary-normal shadow-xs  enabled:active:bg-primary-darker disabled:bg-gray-400 disabled:border-gray-400",
-  secondary: " bg-base-white border text-gray-300 font-normal border-gray-300 ",
+  secondary: " bg-base-white border border-primary-normal text-primary-normal ",
   gradient:
     "bg-gradient-to-r to-secondary-normal from-pink-normal border-none shadow-xs enabled:hover:bg-secondary-lighter enabled:active:bg-secondary-light disabled:bg-secondary-dark disabled:border-secondary-dark",
   white: "bg-base-white text-primary-normal border border-base-white ",

@@ -1,7 +1,8 @@
 import Button from "@/components/button";
 import CollapseComponent from "@/components/collapse";
 import PlusIcon from "@/components/icons/plus-icon";
-import Title from "@/components/title";
+import PageTitle from "@/components/page-title";
+import Link from "next/link";
 import React from "react";
 
 const ProjectHelp: React.FC = () => {
@@ -83,17 +84,19 @@ const ProjectHelp: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
+      <div className="flex justify-between items-baseline">
+        <PageTitle title={"Түгээмэл асуулт хариултууд"} />
+        <Link href={"/project/add-project"}>
         <Button
           icon={<PlusIcon />}
           placeholder="Төсөл оруулах"
           variant="gradient"
           textVariant="gradient"
-        />
+        /></Link>
+
       </div>
-      <div className="flex justify-center">
-        <Title level={4} title={"Түгээмэл асуулт хариултууд"} />
-      </div>
+
+   
 
       <CollapseComponent items={collapseItems} />
     </div>
