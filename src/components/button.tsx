@@ -17,6 +17,7 @@ const VARIANT = {
     "w-40 h-full bg-base-white border-primary-normal text-primary-normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal enabled:hover:text-base-white enabled:active:bg-secondary-light ",
   text: "bg-base-white  text-primary-normal border-2 border-primary normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal ",
   icon: "bg-none border border-base-white w-fit h-fit shadow-none text-primary-normal",
+  grey: "width: '300px', backgroundColor: '#F7F7F7'",
 } as const;
 
 type Variant = keyof typeof VARIANT;

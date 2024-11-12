@@ -29,7 +29,7 @@ export default function HomeLayout({
                 fallback={
                   <div className="fixed z-50 inset-0 gap-4 flex flex-col items-center justify-center bg-opacity-10 backdrop-blur-lg">
                     <Spin size="large" />
-                    <h1 className="color-primary text-xl">
+                    <h1 className="color-  text-xl">
                       Мэдээлэл шинэчилж байна түр хүлээнэ үү!
                     </h1>
                   </div>

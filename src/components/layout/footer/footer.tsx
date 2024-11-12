@@ -9,7 +9,7 @@ const Foot: React.FC<IProps> = () => {
     <div className="flex justify-between items-center w-full h-12 bg-base-white px-17 border-t border-gray-300 bottom-0">
       <div className="flex justify-center items-center w-full">
         <p className="text-gray-600">
-          &copy; {currentYear} Donatia. All rights reserved.
+          &copy; {currentYear} Donatian. All rights reserved.
         </p>
       </div>
     </div>

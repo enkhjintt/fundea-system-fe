@@ -13,10 +13,10 @@ const TopBar: React.FC<IProps> = ({}) => {
 
   return (
     <div className="flex justify-between items-center w-full h-24 bg-base-white px-20 border-b border-gray-300 text-primary-normal">
-      <Link href="/home">
-        <Button variant="icon" icon={<DonatiaIcon />} />
-      </Link>
-      <div className="flex gap-10">
+      <div className="flex items-center gap-10">
+        <Link href="/home">
+          <Button variant="icon" icon={<DonatiaIcon />} />
+        </Link>
         <Link className={`link ${isActive("/donation")}`} href="/donation">
           <div>Санхүүжилт олгох</div>
         </Link>
