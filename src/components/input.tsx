@@ -48,7 +48,7 @@ const Input: React.FC<IProps> = ({
         prefix={loading ? <LoadingIcon /> : prefix}
         placeholder={placeholder ? placeholder : undefined}
         classNames={{
-          input: `font-normal text-sm sm:text-base leading-6`,
+          input: `font-normal text-sm leading-6`,
           prefix: "mr-2",
           suffix: "ml-2",
         }}
@@ -57,8 +57,8 @@ const Input: React.FC<IProps> = ({
         } py-2 px-3 w-full ${heightClass} ${
           variant !== "none"
             ? status === "error"
-              ? "border border-primary-normal"
-              : "border border-gray-300"
+              ? "border-2 border-primary-normal"
+              : "border-2 border-gray-100"
             : "border-none"
         } ${!isLabeled && "-top-1"} ${disabled && "bg-gray-100"}`}
         rootClassName={``}

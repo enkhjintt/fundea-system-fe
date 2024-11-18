@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { Form } from "antd";
+import { Form, UploadFile } from "antd";
 import { useRouter } from "next/navigation";
 import { useNotification } from "@/hooks/use-notification";
 import StepNavigator from "@/components/steps";
 import Title from "@/components/title";
 import InputItem from "@/components/items/input-item";
 import NameItem from "@/components/items/name-item";
+import { CreateProject } from "@/api/projects";
+import SelectProjectTypeItem from "@/components/items/project-type-select-item";
+import SelectProjectClassItem from "@/components/items/project-class-select-item";
 
 type StepContent = {
   title: string;
@@ -15,16 +18,56 @@ type StepContent = {
 };
 
 type IProps = {};
+type IFormItem = {
+  garchig: string;
+  ded_garchig: string;
+  sanhuujiltiin_dun: number;
+  ersdel: string;
+  tuuh: string;
+  delgerengui: string;
+  hereglegch_id: number;
+  tusul_turul_id: number;
+  tusul_angilal_id: number;
+  uilchilgeenii_huraamj_id: number;
+  aimag_code: string;
+  sum_code: string;
+  horoo_code: string;
+  zurag: UploadFile[];
+};
 
 const AddProjectForm: React.FC<IProps> = () => {
   const router = useRouter();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
   const { success, error } = useNotification();
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0]; // Format to yyyy-mm-dd
+  };
+  const handleSubmit = async (values: IFormItem) => {
+    setLoading(true);
+    ("");
 
-  function handleSubmit(values: any): void {
-    throw new Error("Function not implemented.");
-  }
+    const formData = new FormData();
+
+    // for (const [key, value] of Object.entries(values)) {
+    //   if (value?.[0].originFileObj) {
+    //     formData.append("image", value[0].originFileObj);
+    //   }
+    // }
+
+    const response = await CreateProject(formData);
+
+    setLoading(false);
+
+    if (response.success) {
+      success("Төсөл амжилттай илгээгдлээ!");
+      router.push("/home");
+      form.resetFields();
+    } else {
+      error(response.error.message);
+    }
+  };
 
   const steps: StepContent[] = [
     {
@@ -33,11 +76,10 @@ const AddProjectForm: React.FC<IProps> = () => {
         <>
           <Title level={2} title="Төслийн ерөнхий мэдээлэл" />
           <div className="grid grid-cols-1 gap-x-4 w-full ">
-            <InputItem name="title" label="Гарчиг" />
-            <InputItem name="subtitle" label="Дэд гарчиг" />
-            <InputItem name="type" label="Ангилал" />
-
-            {/* <TextArea/> */}
+            <InputItem name="garchig" label="Гарчиг" />
+            <InputItem name="ded_garchig" label="Дэд гарчиг" />
+            <SelectProjectTypeItem />
+            <SelectProjectClassItem />
           </div>
         </>
       ),
