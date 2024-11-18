@@ -3,7 +3,7 @@ import ChevronDownIcon from "./icons/chevron-down-icon";
 
 const VARIANT = {
   primary:
-    "font-medium text-sm sm:text-base text-gray-800 primary-select bg-base-white",
+    "font-medium text-sm text-gray-600 primary-select bg-base-white",
   secondary: "font-normal text-base text-gray-900 secondary-select",
 } as const;
 type Variant = keyof typeof VARIANT;
@@ -33,10 +33,10 @@ const Select: React.FC<IProps> = ({
 
   const variantClassName = VARIANT[variant as Variant];
 
-  const borderClasses = `border ${rounded ? "rounded-lg" : ""} ${
+  const borderClasses = `border-2 ${rounded ? "rounded-lg" : ""} ${
     disabled
       ? "bg-base-white border-none text-gray-700 -ml-2"
-      : "border-gray-300 !important"
+      : "border-gray-100 !important"
   }`;
 
   return (
@@ -46,18 +46,18 @@ const Select: React.FC<IProps> = ({
         size={size}
         className={`${variantClassName} ${borderClasses} ${className} ${
           isLabeled ? "-top-1" : "-top-1"
-        } h-10 w-full shadow-xs overflow-hidden aria-[invalid]:border-error-normal`}
+        } h-11 w-full overflow-hidden  aria-[invalid]:border-error-normal `}
         suffixIcon={
           !disabled ? (
             <ChevronDownIcon
-              className={`fill-gray-300 ${disabled ? "fill-base-white" : ""}`}
+              className={`fill-gray-100 ${disabled ? "fill-base-white" : ""}`}
             />
           ) : null
         }
-        popupClassName={`h-fill font-normal text-shadow-lg rounded-xl border-1 border-gray-300 ${popupClassName}`}
+        popupClassName={`h-fill font-normal text-shadow-lg rounded-xl  ${popupClassName}`}
         placeholder={
           placeholder ? (
-            <span className="text-base">{placeholder}</span>
+            <span className="text-sm">{placeholder}</span>
           ) : undefined
         }
         {...restProps}

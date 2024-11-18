@@ -30,7 +30,7 @@ const StepNavigator: React.FC<StepNavigatorProps> = ({ steps, onComplete }) => {
           title: step.title || `Step ${index + 1}`, // Display index as fallback
         }))}
       />
-      <Wrapper className="p-6 w-full h-[600px]">
+      <Wrapper className="py-6 px-20 w-full h-[600px]">
         {steps[current].content}
       </Wrapper>
       <div className="flex justify-between">
