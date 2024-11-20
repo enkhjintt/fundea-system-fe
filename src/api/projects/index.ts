@@ -38,7 +38,7 @@ export type ProjectResponse = {
 
 export function CreateProject(data: FormData) {
   return api({
-    url: `/system/user`,
+    url: `/tusul/create`,
     method: "POST",
     data,
     config: {
