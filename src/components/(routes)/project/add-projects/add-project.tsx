@@ -80,16 +80,18 @@ const AddProjectForm: React.FC<IProps> = () => {
       formData.append("ersdel", values.ersdel);
       formData.append("tuuh", values.tuuh);
       formData.append("tusul_turul_id", values.tusul_turul_id.toString());
-      formData.append("uilchilgeenii_huraamj_id", values.uilchilgeeni_huraamj_id.toString());
+      formData.append(
+        "uilchilgeenii_huraamj_id",
+        values.uilchilgeeni_huraamj_id.toString()
+      );
       formData.append("sanhuujiltiin_dun", values.sanhuujiltiin_dun.toString());
       if (coverImage) {
         formData.append("cover_zurag", coverImage); // Append file, not path
       }
-  
+
       if (projectImage) {
         formData.append("zurag", projectImage); // Append file, not path
       }
-
 
       // Send the form data
       const response = await CreateProject(formData);
@@ -143,7 +145,9 @@ const AddProjectForm: React.FC<IProps> = () => {
                 accept="image/*"
                 onChange={(e) => handleFileUpload(e, setProjectImage)}
               />
-              {projectImage && <p>Uploaded Project Image: {projectImage.name}</p>}
+              {projectImage && (
+                <p>Uploaded Project Image: {projectImage.name}</p>
+              )}
             </div>
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
               <AimagCityItem allowClear onChange={handleAimagChange} required />
@@ -157,7 +161,8 @@ const AddProjectForm: React.FC<IProps> = () => {
               ) : (
                 <DistrictItem />
               )}
-              {form.getFieldValue("sum_code") && form.getFieldValue("aimag_code") ? (
+              {form.getFieldValue("sum_code") &&
+              form.getFieldValue("aimag_code") ? (
                 <SelectKhorooItem
                   allowClear
                   name={"horoo_code"}
@@ -221,7 +226,6 @@ const AddProjectForm: React.FC<IProps> = () => {
             placeholder="Хадгалах"
             className="rounded-2xl"
             onClick={() => form.submit()} // Programmatically triggers form submission
-
           />
         </div>
       </Wrapper>
