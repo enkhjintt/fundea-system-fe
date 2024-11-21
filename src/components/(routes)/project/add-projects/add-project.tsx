@@ -118,13 +118,13 @@ const AddProjectForm: React.FC<IProps> = () => {
         })
       );
 
-      // Construct the payload with 'zurag' key
+    
       const payload = {
         ...values,
-        zurag: uploadedFiles.filter((file) => file !== null), // Map to the correct key
+        zurag: uploadedFiles.filter((file) => file !== null), 
       };
 
-      // Send payload to the backend
+ 
       const response = await CreateProject(payload);
 
       if (response.success) {
@@ -163,7 +163,7 @@ const AddProjectForm: React.FC<IProps> = () => {
               fileList={fileList}
               onPreview={handlePreview}
               onChange={handleChange}
-              beforeUpload={() => false} // Prevent Ant Design's default upload
+              beforeUpload={() => false} 
               accept="image/*"
             >
               {fileList.length >= 8 ? null : <div>Upload</div>}
