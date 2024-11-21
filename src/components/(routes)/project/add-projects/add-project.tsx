@@ -32,8 +32,8 @@ type IFormItem = {
   aimag_code: string;
   sum_code: string;
   horoo_code: string;
-  zurag: string; // Single string for the image path
-  cover_zurag: string; // Single string for the cover image path
+  zurag: File | null; // File object
+  cover_zurag: File | null; // Single string for the cover image path
 };
 
 const AddProjectForm: React.FC<IProps> = () => {
@@ -41,8 +41,8 @@ const AddProjectForm: React.FC<IProps> = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { success, error } = useNotification();
-  const [coverImage, setCoverImage] = useState<string>(""); // Cover image path
-  const [projectImage, setProjectImage] = useState<string>(""); // Single image path
+  const [coverImage, setCoverImage] = useState<File | null>(null);
+  const [projectImage, setProjectImage] = useState<File | null>(null);
 
   const handleAimagChange = () => {
     form.setFieldValue("sum_code", null);
@@ -56,12 +56,11 @@ const AddProjectForm: React.FC<IProps> = () => {
   // Function to handle image upload
   const handleFileUpload = (
     e: React.ChangeEvent<HTMLInputElement>,
-    setImagePath: React.Dispatch<React.SetStateAction<string>>
+    setImagePath: React.Dispatch<React.SetStateAction<File | null>>
   ) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Generate a placeholder path or directly send to Cloudinary
-      setImagePath(file.name); // Use file.name or actual uploaded path from Cloudinary if needed
+      setImagePath(file); // Store file object directly
     }
   };
 
@@ -75,7 +74,7 @@ const AddProjectForm: React.FC<IProps> = () => {
       formData.append("ded_garchig", values.ded_garchig);
       formData.append("tusul_angilal_id", values.tusul_angilal_id.toString());
       formData.append("aimag_code", values.aimag_code);
-      formData.append("sum_code", values.sum_code || "");
+      formData.append("sum_code", values.sum_code || "1");
       formData.append("horoo_code", values.horoo_code || "");
       formData.append("delgerengui", values.delgerengui);
       formData.append("ersdel", values.ersdel);
@@ -83,8 +82,14 @@ const AddProjectForm: React.FC<IProps> = () => {
       formData.append("tusul_turul_id", values.tusul_turul_id.toString());
       formData.append("uilchilgeenii_huraamj_id", values.uilchilgeeni_huraamj_id.toString());
       formData.append("sanhuujiltiin_dun", values.sanhuujiltiin_dun.toString());
-      formData.append("cover_zurag", coverImage); // Add cover image path
-      formData.append("zurag", projectImage); // Add single image path
+      if (coverImage) {
+        formData.append("cover_zurag", coverImage); // Append file, not path
+      }
+  
+      if (projectImage) {
+        formData.append("zurag", projectImage); // Append file, not path
+      }
+
 
       // Send the form data
       const response = await CreateProject(formData);
@@ -128,7 +133,7 @@ const AddProjectForm: React.FC<IProps> = () => {
                 accept="image/*"
                 onChange={(e) => handleFileUpload(e, setCoverImage)}
               />
-              {coverImage && <p>Uploaded Cover Image: {coverImage}</p>}
+              {coverImage && <p>Uploaded Cover Image: {coverImage.name}</p>}
             </div>
             {/* Single Project Image Upload */}
             <div>
@@ -138,7 +143,7 @@ const AddProjectForm: React.FC<IProps> = () => {
                 accept="image/*"
                 onChange={(e) => handleFileUpload(e, setProjectImage)}
               />
-              {projectImage && <p>Uploaded Project Image: {projectImage}</p>}
+              {projectImage && <p>Uploaded Project Image: {projectImage.name}</p>}
             </div>
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
               <AimagCityItem allowClear onChange={handleAimagChange} required />
