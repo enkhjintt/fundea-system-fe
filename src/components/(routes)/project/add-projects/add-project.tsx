@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Form, Upload, Image } from "antd";
+import { Form } from "antd";
 import { useRouter } from "next/navigation";
 import { useNotification } from "@/hooks/use-notification";
 import Title from "@/components/title";
@@ -12,18 +12,11 @@ import SelectProjectClassItem from "@/components/items/project-class-select-item
 import AimagCityItem from "@/components/items/aimag-select-item";
 import DistrictItem from "@/components/items/sum-select-item";
 import SelectKhorooItem from "@/components/items/khoroo-select-item";
-
 import SelectProjectFeeItem from "@/components/items/project-fee-select-item";
 import InputNumberItem from "@/components/items/input-number-item";
 import TextAreaItem from "@/components/items/input-text-area-item";
 import Wrapper from "@/components/wrapper";
 import Button from "@/components/button";
-import type { UploadFile } from "antd/es/upload/interface";
-import { RcFile } from "antd/es/upload";
-type StepContent = {
-  title: string;
-  content: React.ReactNode;
-};
 
 type IProps = {};
 type IFormItem = {
@@ -33,27 +26,23 @@ type IFormItem = {
   ersdel: string;
   tuuh: string;
   delgerengui: string;
-  hereglegch_id: number;
   tusul_turul_id: number;
   tusul_angilal_id: number;
   uilchilgeenii_huraamj_id: number;
   aimag_code: string;
   sum_code: string;
   horoo_code: string;
-  zurag: UploadFile[];
+  zurag: string; // Single string for the image path
+  cover_zurag: string; // Single string for the cover image path
 };
 
 const AddProjectForm: React.FC<IProps> = () => {
   const router = useRouter();
   const [form] = Form.useForm();
-  const values = Form.useWatch([], form);
   const [loading, setLoading] = useState(false);
   const { success, error } = useNotification();
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-
-  // Function to handle file preview
+  const [coverImage, setCoverImage] = useState<string>(""); // Cover image path
+  const [projectImage, setProjectImage] = useState<string>(""); // Single image path
 
   const handleAimagChange = () => {
     form.setFieldValue("sum_code", null);
@@ -64,75 +53,48 @@ const AddProjectForm: React.FC<IProps> = () => {
     form.setFieldValue("horoo_code", null);
   };
 
-  const uploadToCloudinary = async (file: RcFile) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "your_upload_preset");
-
-    try {
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dangr4bna/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        return data.secure_url;
-      } else {
-        console.error("Cloudinary upload error:", data.error);
-        return "";
-      }
-    } catch (err) {
-      console.error("Error uploading to Cloudinary:", err);
-      return "";
+  // Function to handle image upload
+  const handleFileUpload = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setImagePath: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Generate a placeholder path or directly send to Cloudinary
+      setImagePath(file.name); // Use file.name or actual uploaded path from Cloudinary if needed
     }
-  };
-
-  const handlePreview = (file: UploadFile) => {
-    setPreviewImage(file.url || file.thumbUrl || "");
-    setPreviewOpen(true);
-  };
-
-  const handleChange = ({
-    fileList: newFileList,
-  }: {
-    fileList: UploadFile[];
-  }) => {
-    setFileList(newFileList);
   };
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
+
     try {
-      // Upload each file to Cloudinary
-      const uploadedFiles = await Promise.all(
-        fileList.map(async (file) => {
-          if (file.originFileObj) {
-            const url = await uploadToCloudinary(file.originFileObj);
-            return { url, type: file.type };
-          }
-          return null;
-        })
-      );
+      // Create FormData instance
+      const formData = new FormData();
+      formData.append("garchig", values.garchig);
+      formData.append("ded_garchig", values.ded_garchig);
+      formData.append("tusul_angilal_id", values.tusul_angilal_id.toString());
+      formData.append("aimag_code", values.aimag_code);
+      formData.append("sum_code", values.sum_code || "");
+      formData.append("horoo_code", values.horoo_code || "");
+      formData.append("delgerengui", values.delgerengui);
+      formData.append("ersdel", values.ersdel);
+      formData.append("tuuh", values.tuuh);
+      formData.append("tusul_turul_id", values.tusul_turul_id.toString());
+      formData.append("uilchilgeenii_huraamj_id", values.uilchilgeeni_huraamj_id.toString());
+      formData.append("sanhuujiltiin_dun", values.sanhuujiltiin_dun.toString());
+      formData.append("cover_zurag", coverImage); // Add cover image path
+      formData.append("zurag", projectImage); // Add single image path
 
-      // Construct the payload with 'zurag' key
-      const payload = {
-        ...values,
-        zurag: uploadedFiles.filter((file) => file !== null), // Map to the correct key
-      };
-
-      // Send payload to the backend
-      const response = await CreateProject(payload);
+      // Send the form data
+      const response = await CreateProject(formData);
 
       if (response.success) {
         success("Төсөл амжилттай илгээгдлээ!");
         router.push("/home");
         form.resetFields();
       } else {
-        throw new Error(response.error.message);
+        throw new Error("Алдаа гарлаа!");
       }
     } catch (err: any) {
       error(err.message || "Алдаа гарлаа!");
@@ -158,44 +120,44 @@ const AddProjectForm: React.FC<IProps> = () => {
             <InputItem name="garchig" label="Гарчиг" required />
             <InputItem name="ded_garchig" label="Дэд гарчиг" required />
             <SelectProjectClassItem required />
-            <Upload
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={handlePreview}
-              onChange={handleChange}
-              beforeUpload={() => false} // Prevent Ant Design's default upload
-              accept="image/*"
-            >
-              {fileList.length >= 8 ? null : <div>Upload</div>}
-            </Upload>
-
-            {previewImage && (
-              <Image
-                preview={{
-                  visible: previewOpen,
-                  onVisibleChange: (visible) => setPreviewOpen(visible),
-                }}
-                src={previewImage}
+            {/* Cover Image Upload */}
+            <div>
+              <label>Cover Image:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileUpload(e, setCoverImage)}
               />
-            )}
+              {coverImage && <p>Uploaded Cover Image: {coverImage}</p>}
+            </div>
+            {/* Single Project Image Upload */}
+            <div>
+              <label>Project Image:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileUpload(e, setProjectImage)}
+              />
+              {projectImage && <p>Uploaded Project Image: {projectImage}</p>}
+            </div>
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
               <AimagCityItem allowClear onChange={handleAimagChange} required />
-              {values?.aimag_code ? (
+              {form.getFieldValue("aimag_code") ? (
                 <DistrictItem
                   allowClear
                   onChange={handleDistrictChange}
-                  aimagId={values?.aimag_code}
+                  aimagId={form.getFieldValue("aimag_code")}
                   required
                 />
               ) : (
                 <DistrictItem />
               )}
-              {values?.sum_code && values?.aimag_code ? (
+              {form.getFieldValue("sum_code") && form.getFieldValue("aimag_code") ? (
                 <SelectKhorooItem
                   allowClear
                   name={"horoo_code"}
-                  sum={values?.sum_code}
-                  aimag={values?.aimag_code}
+                  sum={form.getFieldValue("sum_code")}
+                  aimag={form.getFieldValue("aimag_code")}
                 />
               ) : (
                 <SelectKhorooItem name={"horoo_code"} />
@@ -253,6 +215,8 @@ const AddProjectForm: React.FC<IProps> = () => {
             htmlType="submit"
             placeholder="Хадгалах"
             className="rounded-2xl"
+            onClick={() => form.submit()} // Programmatically triggers form submission
+
           />
         </div>
       </Wrapper>
