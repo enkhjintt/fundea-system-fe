@@ -25,12 +25,10 @@ const ProjectDisplayItem: React.FC<ProjectDisplayItemProps> = ({
           <p className="text-base text-gray-700">{subtitle}</p>
         </div>
         <div className="mt-4 mb-4 shadow-lg w-full h-[750px] relative rounded-b-lg">
-          <Image
+          <img
             className="object-cover rounded-b-lg"
             src={imageUrl}
             alt={description}
-            layout="fill"
-            objectFit="cover"
           />
         </div>
       </Wrapper>

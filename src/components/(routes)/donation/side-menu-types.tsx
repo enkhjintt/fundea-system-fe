@@ -11,18 +11,18 @@ const SideMenu: React.FC<IProps> = ({}) => {
 
   const options = [
     { label: "Эрүүл мэнд", value: "A" },
-    { label: "Технологи", value: "B" },
+    { label: "Технологи", value: "1" },
     { label: "Спорт", value: "C" },
-    { label: "Урлаг соёл", value: "D" },
-    { label: "Хоол хүнс", value: "E" },
+    { label: "Урлаг соёл", value: "2" },
+    { label: "Хоол хүнс", value: "3" },
     { label: "Бусад", value: "F" },
   ];
 
   const statusOptions = [
-    { label: "Шинээр үүссэн", value: "A" },
-    { label: "Хэрэгжиж байгаа", value: "B" },
-    { label: "Хугацаа дууссан (Амжилттай)", value: "C" },
-    { label: "Хугацаа дууссан (Амжилтгүй)", value: "D" },
+    { label: "Шинээр үүссэн", value: "2" },
+    { label: "Хэрэгжиж байгаа", value: "3" },
+    { label: "Хугацаа дууссан (Амжилттай)", value: "7" },
+    { label: "Хугацаа дууссан (Амжилтгүй)", value: "4" },
   ];
 
   const percentageOptions = [

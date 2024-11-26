@@ -7,9 +7,9 @@ import StockIcon from "../icons/stock-icon";
 
 const ProjectTypeItem: React.FC = () => {
   const options = [
-    { label: "Урамшуулал", value: "3", icon: <GiftIcon /> },
+    { label: "Урамшуулал", value: "1", icon: <GiftIcon /> },
     { label: "Хандив", value: "2", icon: <DonateIcon /> },
-    { label: "Хувьцаа", value: "1", icon: <StockIcon /> },
+    { label: "Хувьцаа", value: "3", icon: <StockIcon /> },
   ];
 
   return <IconRadioGroup options={options} defaultValue={""} />;
