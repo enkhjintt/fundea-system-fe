@@ -49,7 +49,7 @@ const ViewDonation: React.FC<IProps> = ({ id }) => {
             desc={data?.Hereglegch?.ner}
           />
           <p className="text-sm mt-3">
-            MANGAS манга багтай танилцах: www.mngs.mn
+            Төсөл хэрэгжүүлэгчтэй холбоо барих: {data?.Hereglegch?.email}
           </p>
 
           <div className="grid grid-cols-2 gap-8 mt-8">
@@ -65,13 +65,14 @@ const ViewDonation: React.FC<IProps> = ({ id }) => {
         </Wrapper>
 
         <div className="w-1/4">
-          {/* <ProjectProgressCardItem
-            totalAmount={data?.totalAmount || 0}
-            collectedAmount={data?.collectedAmount || 0}
-            remainingDays={data?.remainingDays || 0}
-            validProgress={data?.progress || 0}
+          <ProjectProgressCardItem
+            id={id}
+            totalAmount={data?.sanhuujiltiin_dun || 0}
+            collectedAmount={0}
+            remainingDays={0}
+            validProgress={0}
             progressColor="bg-secondary-normal"
-          /> */}
+          />
         </div>
       </div>
     </>

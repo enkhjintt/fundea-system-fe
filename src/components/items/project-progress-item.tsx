@@ -1,8 +1,10 @@
 import React from "react";
 import Button from "../button";
 import GiftIcon from "../icons/gift-icon";
+import { useRouter } from "next/navigation";
 
 interface ProjectProgressCardItemProps {
+  id: number; // Add id here
   totalAmount: number;
   collectedAmount: number;
   remainingDays: number;
@@ -11,18 +13,21 @@ interface ProjectProgressCardItemProps {
 }
 
 const ProjectProgressCardItem: React.FC<ProjectProgressCardItemProps> = ({
+  id,
   totalAmount,
   collectedAmount,
   remainingDays,
   validProgress,
   progressColor,
 }) => {
+  const router = useRouter();
+
   return (
     <div className="w-full max-h-fill p-4 rounded-lg shadow-md text-sm text-gray-600 bg-base-white">
-      <p className=" font-semibold text-gray-800">
+      <p className="font-semibold text-gray-800">
         Нийт цуглуулах дүн: {totalAmount.toLocaleString()}₮
       </p>
-      <p className=" font-semibold ">
+      <p className="font-semibold">
         Нийт цугласан дүн: {collectedAmount.toLocaleString()}₮
       </p>
       <div className="flex flex-col my-4">
@@ -40,6 +45,7 @@ const ProjectProgressCardItem: React.FC<ProjectProgressCardItemProps> = ({
           variant="gradient"
           placeholder="Санхүүжүүлэх"
           textVariant="gradient"
+          onClick={() => router.push(`/project/add-donation/${id}`)}
         />
         <Button
           variant="secondary"
