@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import SectionLayout from "@/components/section-layout";
 
-import ViewDonation from "@/components/(routes)/donation/view/view-donation";
+import ViewDonation from "@/components/(routes)/project/view/view-donation";
 
 export const metadata: Metadata = {
   title: "Төслийн дэлгэрэнггй",
