@@ -43,14 +43,14 @@ const AddProjectForm: React.FC<IProps> = () => {
   const { success, error } = useNotification();
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [projectImage, setProjectImage] = useState<File | null>(null);
-
+  const values = Form.useWatch([], form);
   const handleAimagChange = () => {
-    form.setFieldValue("sum_code", null);
-    form.setFieldValue("horoo_code", null);
+    form.setFieldValue("sum_code", undefined);
+    form.setFieldValue("horoo_code", undefined);
   };
 
   const handleDistrictChange = () => {
-    form.setFieldValue("horoo_code", null);
+    form.setFieldValue("horoo_code", undefined);
   };
 
   // Function to handle image upload
@@ -86,11 +86,11 @@ const AddProjectForm: React.FC<IProps> = () => {
       );
       formData.append("sanhuujiltiin_dun", values.sanhuujiltiin_dun.toString());
       if (coverImage) {
-        formData.append("cover_zurag", coverImage); // Append file, not path
+        formData.append("cover_zurag", coverImage); 
       }
 
       if (projectImage) {
-        formData.append("zurag", projectImage); // Append file, not path
+        formData.append("zurag", projectImage); 
       }
 
       // Send the form data
@@ -150,29 +150,29 @@ const AddProjectForm: React.FC<IProps> = () => {
               )}
             </div>
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-              <AimagCityItem allowClear onChange={handleAimagChange} required />
-              {form.getFieldValue("aimag_code") ? (
-                <DistrictItem
-                  allowClear
-                  onChange={handleDistrictChange}
-                  aimagId={form.getFieldValue("aimag_code")}
-                  required
-                />
-              ) : (
-                <DistrictItem />
-              )}
-              {form.getFieldValue("sum_code") &&
-              form.getFieldValue("aimag_code") ? (
-                <SelectKhorooItem
-                  allowClear
-                  name={"horoo_code"}
-                  sum={form.getFieldValue("sum_code")}
-                  aimag={form.getFieldValue("aimag_code")}
-                />
-              ) : (
-                <SelectKhorooItem name={"horoo_code"} />
-              )}
-            </div>
+            <AimagCityItem allowClear onChange={handleAimagChange} />
+
+            {values?.aimag_code ? (
+              <DistrictItem
+                allowClear
+                onChange={handleDistrictChange}
+                aimagId={values.aimag_code && values.aimag_code}
+              />
+            ) : (
+              <DistrictItem />
+            )}
+
+            {values?.sum_code && values?.aimag_code ? (
+              <SelectKhorooItem
+                allowClear
+                name={"horoo_code"}
+                sum={values?.sum_code}
+                aimag={values?.aimag_code}
+              />
+            ) : (
+              <SelectKhorooItem name={"horoo_code"} />
+            )}
+          </div>
           </div>
           <Title level={2} title="Төслийн дэлгэрэнгүй мэдээлэл" />
           <div className="grid grid-cols-1 gap-4 w-full">

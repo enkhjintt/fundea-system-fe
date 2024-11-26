@@ -5,17 +5,11 @@ import CustomCard from "@/components/custom-card";
 import PageTitle from "@/components/page-title";
 import { usePublicProject } from "@/hooks/use-public-projects";
 import { useRouter } from "next/navigation";
-import ProjectTypeItem from "../project-type-item";
-import ProjectCategory from "../project-category";
 
 type IProps = {};
 
-const NewProjects: React.FC<IProps> = () => {
-  const { data, isLoading } = usePublicProject(undefined, {
-    tusul_tuluv_id: 2,
-    sort_by: "created_at",
-    sort_type: "desc",
-  });
+const SuccessProjects: React.FC<IProps> = () => {
+  const { data, isLoading } = usePublicProject();
   const router = useRouter();
 
   if (isLoading) {
@@ -23,7 +17,7 @@ const NewProjects: React.FC<IProps> = () => {
   }
 
   if (!data || data.items.length === 0) {
-    return <div>Одоогоор төсөл байхгүй байна.</div>;
+    return <div>Одоогоор төсөл байхгүй байна</div>;
   }
 
   const projects = data.items;
@@ -34,10 +28,8 @@ const NewProjects: React.FC<IProps> = () => {
 
   return (
     <>
-      <ProjectTypeItem />
-      <ProjectCategory />
       <PageTitle
-        title={"Шинэ төслүүд"}
+        title={"Амжилттай төслүүд"}
         button={
           <Button
             variant="gradient"
@@ -57,7 +49,7 @@ const NewProjects: React.FC<IProps> = () => {
               imageSrc={project.zurag}
               subtitle={`# ${project.TusulAngilal?.ner}`}
               progress={project.sanhuujiltiin_dun}
-              className="cursor-pointer" // Хулганаар дээр дарах боломжтойг илтгэх
+              className="cursor-pointer"
             />
           </div>
         ))}
@@ -66,4 +58,4 @@ const NewProjects: React.FC<IProps> = () => {
   );
 };
 
-export default NewProjects;
+export default SuccessProjects;

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 type IProps = {};
 
-const TopBar2: React.FC<IProps> = ({}) => {
+const NewTopbar: React.FC<IProps> = ({}) => {
   const pathname = usePathname();
 
   const isActive = (path: string) =>
@@ -17,12 +17,18 @@ const TopBar2: React.FC<IProps> = ({}) => {
         <Button variant="icon" icon={<DonatiaIcon />} />
       </Link>
       <div className="flex gap-10">
+        <Link className={`link ${isActive("/donation")}`} href="/donation">
+          <div>Санхүүжилт олгох</div>
+        </Link>
+        <Link className={`link ${isActive("/project")}`} href="/project">
+          <div>Төсөл оруулах</div>
+        </Link>
       </div>
       <Link className={`link ${isActive("/auth/login")}`} href="/auth/login">
-        <div> Асуулт хариулт </div>
+        <div>Profile</div>
       </Link>
     </div>
   );
 };
 
-export default TopBar2;
+export default NewTopbar;

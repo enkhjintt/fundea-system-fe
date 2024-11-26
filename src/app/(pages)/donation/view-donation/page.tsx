@@ -13,7 +13,7 @@ export default function DonationPage() {
   return (
     <>
       <SectionLayout>
-        <ViewDonation />
+        aaa
       </SectionLayout>
     </>
   );
