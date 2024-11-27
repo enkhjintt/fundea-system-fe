@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Radio } from "antd";
 
 interface Option {
@@ -10,16 +10,27 @@ interface Option {
 interface IconRadioGroupProps {
   options: Option[];
   defaultValue: string;
+  onChange?: (value: string) => void;
 }
 
 const IconRadioGroup: React.FC<IconRadioGroupProps> = ({
   options,
   defaultValue,
+  onChange,
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
+  // Update selectedValue if defaultValue changes
+  useEffect(() => {
+    setSelectedValue(defaultValue);
+  }, [defaultValue]);
+
   const handleChange = (e: any) => {
-    setSelectedValue(e.target.value);
+    const value = e.target.value;
+    setSelectedValue(value);
+    if (onChange) {
+      onChange(value);
+    }
   };
 
   return (

@@ -5,16 +5,20 @@ import CustomCard from "@/components/custom-card";
 import PageTitle from "@/components/page-title";
 import { usePublicProject } from "@/hooks/use-public-projects";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type IProps = {};
 
 const SuccessProjects: React.FC<IProps> = () => {
-  const { data, isLoading } = usePublicProject();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { data, isLoading } = usePublicProject(undefined, {
+    tusul_tuluv_ner: "Амжилттай төсөл",
+  });
   const router = useRouter();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
 
   if (!data || data.items.length === 0) {
     return <div>Одоогоор төсөл байхгүй байна</div>;
@@ -35,6 +39,7 @@ const SuccessProjects: React.FC<IProps> = () => {
             variant="gradient"
             placeholder="Бүгдийг үзэх"
             className="w-full"
+            onClick={() => router.push("donation")}
           />
         }
       />

@@ -1,22 +1,15 @@
-import { Metadata } from "next";
+"use client";
+import { useSearchParams } from "next/navigation";
 import AllProjects from "@/components/(routes)/project/all-project/all-project";
 import SectionLayout from "@/components/section-layout";
-import Wrapper from "@/components/wrapper";
-import SideMenu from "@/components/(routes)/project/side-menu-types";
-
-export const metadata: Metadata = {
-  title: "Санхүүжилт олгох ",
-};
 
 export default function DonationPage() {
+  const searchParams = useSearchParams();
+  const tusulTurulNer = searchParams.get("tusul_turul_ner") || "";
+
   return (
-    <>
-      <SectionLayout>
-        <Wrapper className="h-100 bg-gradient-to-r to-secondary-normal from-pink-normal">
-          hi
-        </Wrapper>
-        <AllProjects />
-      </SectionLayout>
-    </>
+    <SectionLayout>
+      <AllProjects initialTypeSearch={tusulTurulNer} />
+    </SectionLayout>
   );
 }

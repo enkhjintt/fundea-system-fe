@@ -3,6 +3,7 @@ import { api } from "@/api/api";
 export type ProjectTypeResponse = {
   id: number;
   ner: string;
+  tusul_turul_ner: string;
   shimtgel_huvi: number;
   //busad type
 };
