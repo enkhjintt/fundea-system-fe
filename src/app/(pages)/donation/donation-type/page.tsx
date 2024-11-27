@@ -3,19 +3,17 @@ import AllProjects from "@/components/(routes)/donation/all-project/all-project"
 import SectionLayout from "@/components/section-layout";
 import Wrapper from "@/components/wrapper";
 import SideMenu from "@/components/(routes)/donation/side-menu-types";
-import ViewDonation from "@/components/(routes)/donation/view/view-donation";
-import UserProfile from "@/components/(routes)/profile/profile";
-import NewProjects from "@/components/(routes)/project/new-project/new-project";
+import DonationType from "@/components/(routes)/donation/type/donation-type";
 
 export const metadata: Metadata = {
-  title: " Profile ",
+  title: "Санхүүжилт олгох ",
 };
 
 export default function DonationPage() {
   return (
     <>
       <SectionLayout>
-      <UserProfile /> 
+        <DonationType />
       </SectionLayout>
     </>
   );

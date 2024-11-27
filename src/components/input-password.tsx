@@ -9,7 +9,7 @@ const VARIANT = {
 } as const;
 
 type Variant = keyof typeof VARIANT;
-const defualtPlaceholder = "Нууц үгээ оруулна уу";
+const defaultPlaceholder = "Нууц үгээ оруулна уу";
 
 type TProps = Omit<InputProps, "size"> & {
   variant?: Variant;
@@ -21,7 +21,7 @@ type TProps = Omit<InputProps, "size"> & {
 
 const PasswordInput: React.FC<TProps> = ({
   variant = "primary",
-  placeholder = defualtPlaceholder,
+  placeholder = defaultPlaceholder,
   isLabeled = false,
   prefix,
   loading = false,
@@ -79,4 +79,5 @@ const PasswordInput: React.FC<TProps> = ({
   );
 };
 
+// Use named exports
 export default PasswordInput;

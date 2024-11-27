@@ -22,7 +22,7 @@ export default function HomeLayout({
         <div>{children}</div>
       ) : (
         <div className="w-full h-screen ">
-          <div className={` w-full`}>
+          {/* <div className={` w-full`}> */}
             <TopBar />
             <div className="pb-40">
               <Suspense
@@ -45,7 +45,7 @@ export default function HomeLayout({
             <div className=" bottom-0 left-0 right-0">
               <Foot />
             </div>
-          </div>
+          {/* </div> */}
         </div>
       )}
     </div>

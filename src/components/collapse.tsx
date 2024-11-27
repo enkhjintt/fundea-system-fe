@@ -1,3 +1,4 @@
+"use client"
 import React, { CSSProperties } from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import type { CollapseProps } from "antd";
@@ -26,6 +27,8 @@ const CustomCollapse: React.FC<CustomCollapseProps> = ({
     border: `1px solid ${customBorderColor}`,
     padding: "12px",
   };
+
+
 
   return (
     <Collapse

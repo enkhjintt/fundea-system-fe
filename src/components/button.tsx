@@ -8,7 +8,7 @@ const VARIANT = {
   none: "bg-base-transparent text-primary-normal border border-primary-normal",
   primary:
     "bg-primary-normal border border-primary-normal shadow-xs  enabled:active:bg-primary-darker disabled:bg-gray-400 disabled:border-gray-400",
-  secondary: " bg-base-white border text-gray-300 font-normal border-gray-300 ",
+  secondary: " bg-base-white border border-primary-normal text-primary-normal ",
   gradient:
     "bg-gradient-to-r to-secondary-normal from-pink-normal border-none shadow-xs enabled:hover:bg-secondary-lighter enabled:active:bg-secondary-light disabled:bg-secondary-dark disabled:border-secondary-dark",
   white: "bg-base-white text-primary-normal border border-base-white ",
@@ -17,7 +17,7 @@ const VARIANT = {
     "w-40 h-full bg-base-white border-primary-normal text-primary-normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal enabled:hover:text-base-white enabled:active:bg-secondary-light ",
   text: "bg-base-white  text-primary-normal border-2 border-primary normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal ",
   icon: "bg-none border border-base-white w-fit h-fit shadow-none text-primary-normal",
-  grey: "width: '300px', backgroundColor: '#F7F7F7'",
+  gray: "w-80 h-14 border-none rounded-none text-gray-800 bg-base-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-secondary-normal hover:to-pink-normal transition-all duration-100",
 } as const;
 
 type Variant = keyof typeof VARIANT;
@@ -33,6 +33,7 @@ const TEXT_VARIANT = {
   rectangle: "font-medium",
   text: "",
   icon: "",
+  gray: "font-normal text-base-black text-sm leading-8",
 };
 
 const PADDING = {

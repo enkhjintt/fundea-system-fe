@@ -16,7 +16,7 @@ const PageTitle: React.FC<IProps> = ({
   hidden,
 }) => {
   return (
-    <div className="flex justify-between h-20 mt-10">
+    <div className="flex justify-between  mt-0">
       <div className="flex gap-x-4 items-center">
         <BlockIcon />
         <Title className="text-primary-normal" title={title} />

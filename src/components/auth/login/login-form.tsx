@@ -2,7 +2,7 @@
 
 import Button from "@/components/button";
 // import RememberItem from "@/components/items/remember-item";
-import PasswordItem from "@/components/items/password-item";
+import {PasswordItem, ConfirmPasswordItem} from "@/components/items/password-item";
 import Title from "@/components/title";
 import { useNotification } from "@/hooks/use-notification";
 import { useRouter } from "next/navigation";
@@ -185,6 +185,7 @@ const LoginForm: React.FC<TProps> = () => {
             placeholder="Бүртгүүлэх"
             variant="text"
             className="w-full"
+            onClick={() => router.push("/auth/sign-up")} 
           />
         </div>
       </Form>

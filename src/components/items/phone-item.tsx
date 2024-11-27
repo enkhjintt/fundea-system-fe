@@ -1,5 +1,5 @@
 import Input from "../input";
-import FormItem, { type IFormItemProps } from "../form-item";
+import FormItem, { type IFormItemProps } from "./form-item";
 
 type TProps = Omit<IFormItemProps, "label"> & {
   label?: string;
@@ -10,21 +10,21 @@ type TProps = Omit<IFormItemProps, "label"> & {
   readonly?: boolean;
 };
 
-const EmailItem: React.FC<TProps> = ({
-  name = "email",
-  label = "Имэйл хаяг",
-  placeholder = "Имэйл",
+const PhoneItem: React.FC<TProps> = ({
+  name = "phone",
+  label = "Утасны дугаар",
+  placeholder = "Утасны дугаараа оруулна уу",
   disabled,
+  readonly,
   allowClear = false,
   required,
-  readonly,
   rules: rulesProps = [],
   ...restProps
 }) => {
   const rules: IFormItemProps["rules"] = [
     {
-      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "И-мэйл хаягийг зөв форматаар оруулна уу",
+      pattern: /^\d{8}$/,
+      message: "Утасны дугаарыг зөв форматаар оруулна уу",
     },
     ...rulesProps,
   ];
@@ -32,7 +32,7 @@ const EmailItem: React.FC<TProps> = ({
   if (required) {
     rules.push({
       required: true,
-      message: `${label} хаягаа заавал оруулна уу`,
+      message: `Утасны дугаараа заавал оруулна уу`,
     });
   }
 
@@ -45,6 +45,7 @@ const EmailItem: React.FC<TProps> = ({
       {...restProps}
     >
       <Input
+        maxLength={8}
         readOnly={readonly}
         disabled={disabled}
         placeholder={placeholder}
@@ -54,4 +55,4 @@ const EmailItem: React.FC<TProps> = ({
   );
 };
 
-export default EmailItem;
+export default PhoneItem;

@@ -10,9 +10,9 @@ type TProps = Omit<IFormItemProps, "label"> & {
 };
 
 const PasswordItem: React.FC<TProps> = ({
-  name = "passsword",
+  name = "password",
   label = "Нууц үг",
-  placeholder = "Нууц үгээ оруулна уу",
+  placeholder = "Нууц үг",
   disabled,
   allowClear = false,
   required,
@@ -22,7 +22,7 @@ const PasswordItem: React.FC<TProps> = ({
   const rules: IFormItemProps["rules"] = [
     {
       pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).+$/,
-      message: "Том, жижиг үсэг, тоо, тэмдэгт оруулна уу",
+      message: "Том, жижиг үсэг, тоо, тэмдэгт оруулна уу.",
     },
     ...rulesProps,
   ];
@@ -51,4 +51,48 @@ const PasswordItem: React.FC<TProps> = ({
   );
 };
 
-export default PasswordItem;
+const ConfirmPasswordItem: React.FC<TProps> = ({
+  name = "confirmPassword",
+  label = "Нууц үг давтан оруулах",
+  placeholder = "Нууц үг",
+  disabled,
+  allowClear = false,
+  required,
+  rules: rulesProps = [],
+  ...restProps
+}) => {
+  const rules: IFormItemProps["rules"] = [
+    ...rulesProps,
+    {
+      required: true,
+      message: "Нууц үг заавал давтан оруулна уу.",
+    },
+    ({ getFieldValue }) => ({
+      validator(_, value) {
+        if (!value || getFieldValue("password") === value) {
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error("Нууц үг таарахгүй байна."));
+      },
+    }),
+  ];
+
+  return (
+    <FormItem
+      name={name}
+      label={label}
+      required={required}
+      rules={rules}
+      {...restProps}
+    >
+      <PasswordInput
+        disabled={disabled}
+        placeholder={placeholder}
+        allowClear={allowClear}
+      />
+    </FormItem>
+  );
+};
+
+// Export components
+export { PasswordItem, ConfirmPasswordItem };
