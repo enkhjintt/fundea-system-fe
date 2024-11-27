@@ -1,5 +1,5 @@
 import React from "react";
-import GiftIcon from "./icons/gift-icon";
+import CurrentIcon from "./icons/current-icon";
 
 interface IconReminderProps {
   icon?: React.ReactNode;
@@ -8,12 +8,12 @@ interface IconReminderProps {
 }
 
 const IconReminder: React.FC<IconReminderProps> = ({
-  icon = <GiftIcon />,
+  icon = <CurrentIcon />,
   message,
   className,
 }) => {
   return (
-    <div className={`font-medium text-xs flex flex-row items-center gap-x-3 mt-3 ${className}`}>
+    <div className={`font-medium text-xs flex flex-row items-center gap-x-3 mt-4 ${className}`}>
       {icon} {message}
     </div>
   );
