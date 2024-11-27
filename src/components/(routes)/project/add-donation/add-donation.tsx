@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import IconReminder from "@/components/icon-reminder";
 import SliderComponent from "@/components/slider";
 import Image from 'next/image';
+import CurrentIcon from "@/components/icons/current-icon";
 
 interface IProps {
   id: number;
@@ -55,8 +56,8 @@ const AddDonation: React.FC<IProps> = ({ id }) => {
               placeholder="Сонгох"
               textVariant="gradient"
               className="w-44 h-8 mx-auto mt-5" />
-          <IconReminder message="Манай компани нь урамшууллын гүйцэтгэлд хариуцлага хүлээхгүй болно." />
-          <IconReminder message="Төсөл заасан хугацаандаа санхүүжилтээ босгож чадаагүй үед буцаан олголт хийгдэнэ." />
+          <IconReminder message="Манай компани нь урамшууллын гүйцэтгэлд хариуцлага хүлээхгүй болно." icon={<CurrentIcon />}/>
+          <IconReminder message="Төсөл заасан хугацаандаа санхүүжилтээ босгож чадаагүй үед буцаан олголт хийгдэнэ. " icon={<CurrentIcon />} />
         </Wrapper>
 
 
@@ -83,8 +84,8 @@ const AddDonation: React.FC<IProps> = ({ id }) => {
               placeholder="Сонгох"
               textVariant="gradient"
               className="w-44 h-8 mx-auto mt-5" />
-          <IconReminder message="Манай компани нь урамшууллын гүйцэтгэлд хариуцлага хүлээхгүй болно." />
-          <IconReminder message="Төсөл заасан хугацаандаа санхүүжилтээ босгож чадаагүй үед буцаан олголт хийгдэнэ." />
+          <IconReminder message="Манай компани нь урамшууллын гүйцэтгэлд хариуцлага хүлээхгүй болно." icon={<CurrentIcon />}/>
+          <IconReminder message="Төсөл заасан хугацаандаа санхүүжилтээ босгож чадаагүй үед буцаан олголт хийгдэнэ. " icon={<CurrentIcon />} />
         </Wrapper>
 
       </div>
