@@ -1,20 +1,22 @@
 import React from "react";
-import GiftIcon from "./icons/gift-icon";
 
 interface IconReminderProps {
-  icon?: React.ReactNode;
+  icon?: React.ReactNode; // Accept any valid React node as the icon
   message: string;
-  className?: string;
+  iconClassName?: string; // Custom styles for the icon
+  messageClassName?: string; // Custom styles for the message
 }
 
 const IconReminder: React.FC<IconReminderProps> = ({
-  icon = <GiftIcon />,
+  icon, // Accepts custom icon
   message,
-  className,
+  iconClassName = "", // Default empty class for icon
+  messageClassName = "", // Default empty class for message
 }) => {
   return (
-    <div className={`font-medium text-xs flex flex-row items-center gap-x-3 mt-3 ${className}`}>
-      {icon} {message}
+    <div className={`font-medium text-xs flex flex-row items-center gap-x-1 mt-2`}>
+      <span className={`${iconClassName}`}>{icon}</span> {/* Render passed icon */}
+      <span className={`${messageClassName}`}>{message}</span> {/* Render message */}
     </div>
   );
 };

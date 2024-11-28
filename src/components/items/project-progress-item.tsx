@@ -21,7 +21,10 @@ const ProjectProgressCardItem: React.FC<ProjectProgressCardItemProps> = ({
   progressColor,
 }) => {
   const router = useRouter();
-
+  // const handleClick()=>{
+  //   router.push(`/project/add-donation/${id}`)
+  // }
+  
   return (
     <div className="w-full max-h-fill p-4 rounded-lg shadow-md text-sm text-gray-600 bg-base-white">
       <p className="font-semibold text-gray-800">
@@ -45,7 +48,7 @@ const ProjectProgressCardItem: React.FC<ProjectProgressCardItemProps> = ({
           variant="gradient"
           placeholder="Санхүүжүүлэх"
           textVariant="gradient"
-          onClick={() => router.push(`/project/add-donation/${id}`)}
+          // onClick={() => handleClick}
         />
         <Button
           variant="secondary"
