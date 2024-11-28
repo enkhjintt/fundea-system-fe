@@ -86,11 +86,11 @@ const AddProjectForm: React.FC<IProps> = () => {
       );
       formData.append("sanhuujiltiin_dun", values.sanhuujiltiin_dun.toString());
       if (coverImage) {
-        formData.append("cover_zurag", coverImage); 
+        formData.append("cover_zurag", coverImage);
       }
 
       if (projectImage) {
-        formData.append("zurag", projectImage); 
+        formData.append("zurag", projectImage);
       }
 
       // Send the form data
@@ -117,10 +117,9 @@ const AddProjectForm: React.FC<IProps> = () => {
       layout="vertical"
       requiredMark={false}
       autoComplete="off"
-      className="flex flex-col gap-4"
       onFinish={handleSubmit}
     >
-      <Wrapper className="px-20">
+      <Wrapper className="px-20 py-10">
         <>
           <Title level={2} title="Төслийн ерөнхий мэдээлэл" />
           <div className="grid grid-cols-1 gap-x-4 w-full">
@@ -128,7 +127,7 @@ const AddProjectForm: React.FC<IProps> = () => {
             <InputItem name="ded_garchig" label="Дэд гарчиг" required />
             <SelectProjectClassItem required />
             {/* Cover Image Upload */}
-            <div>
+            {/* <div>
               <label>Cover Image:</label>
               <input
                 type="file"
@@ -136,43 +135,48 @@ const AddProjectForm: React.FC<IProps> = () => {
                 onChange={(e) => handleFileUpload(e, setCoverImage)}
               />
               {coverImage && <p>Uploaded Cover Image: {coverImage.name}</p>}
-            </div>
+            </div> */}
             {/* Single Project Image Upload */}
-            <div>
-              <label>Project Image:</label>
+            <div className="mb-4">
+              <label className="text-gray-600 text-sm font-light pb-2">
+                Төслийн зураг
+              </label>
               <input
+                className="text-gray-600 text-sm font-light "
                 type="file"
                 accept="image/*"
                 onChange={(e) => handleFileUpload(e, setProjectImage)}
               />
               {projectImage && (
-                <p>Uploaded Project Image: {projectImage.name}</p>
+                <p className="text-gray-600 text-sm font-light ">
+                  Оруулсан зураг: {projectImage.name}
+                </p>
               )}
             </div>
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-            <AimagCityItem allowClear onChange={handleAimagChange} />
+              <AimagCityItem allowClear onChange={handleAimagChange} />
 
-            {values?.aimag_code ? (
-              <DistrictItem
-                allowClear
-                onChange={handleDistrictChange}
-                aimagId={values.aimag_code && values.aimag_code}
-              />
-            ) : (
-              <DistrictItem />
-            )}
+              {values?.aimag_code ? (
+                <DistrictItem
+                  allowClear
+                  onChange={handleDistrictChange}
+                  aimagId={values.aimag_code && values.aimag_code}
+                />
+              ) : (
+                <DistrictItem />
+              )}
 
-            {values?.sum_code && values?.aimag_code ? (
-              <SelectKhorooItem
-                allowClear
-                name={"horoo_code"}
-                sum={values?.sum_code}
-                aimag={values?.aimag_code}
-              />
-            ) : (
-              <SelectKhorooItem name={"horoo_code"} />
-            )}
-          </div>
+              {values?.sum_code && values?.aimag_code ? (
+                <SelectKhorooItem
+                  allowClear
+                  name={"horoo_code"}
+                  sum={values?.sum_code}
+                  aimag={values?.aimag_code}
+                />
+              ) : (
+                <SelectKhorooItem name={"horoo_code"} />
+              )}
+            </div>
           </div>
           <Title level={2} title="Төслийн дэлгэрэнгүй мэдээлэл" />
           <div className="grid grid-cols-1 gap-4 w-full">

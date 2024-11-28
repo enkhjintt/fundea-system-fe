@@ -12,7 +12,7 @@ type IProps = {};
 const SuccessProjects: React.FC<IProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { data, isLoading } = usePublicProject(undefined, {
-    tusul_tuluv_ner: "Амжилттай төсөл",
+    tusul_tuluv_ner: "Хэрэгжсэн",
   });
   const router = useRouter();
 

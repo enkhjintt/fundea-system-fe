@@ -2,8 +2,7 @@ import { Select as AntdSelect, Form, type SelectProps } from "antd";
 import ChevronDownIcon from "./icons/chevron-down-icon";
 
 const VARIANT = {
-  primary:
-    "font-medium text-sm text-gray-600 primary-select bg-base-white",
+  primary: "font-medium text-sm text-gray-600 primary-select bg-base-white",
   secondary: "font-normal text-base text-gray-900 secondary-select",
 } as const;
 type Variant = keyof typeof VARIANT;
@@ -29,14 +28,18 @@ const Select: React.FC<IProps> = ({
   popupClassName = "",
   ...restProps
 }) => {
-  const { status, errors } = Form.Item.useStatus();
+  const { status, errors = [] } = Form.Item.useStatus();
 
   const variantClassName = VARIANT[variant as Variant];
 
-  const borderClasses = `border-2 ${rounded ? "rounded-lg" : ""} ${
+  const hasError = errors.length > 0;
+
+  const borderClasses = `border ${rounded ? "rounded-lg" : ""} ${
     disabled
       ? "bg-base-white border-none text-gray-700 -ml-2"
-      : "border-gray-100 !important"
+      : hasError
+      ? "border-primary-normal"
+      : "border-gray-100"
   }`;
 
   return (
@@ -46,7 +49,7 @@ const Select: React.FC<IProps> = ({
         size={size}
         className={`${variantClassName} ${borderClasses} ${className} ${
           isLabeled ? "-top-1" : "-top-1"
-        } h-11 w-full overflow-hidden  aria-[invalid]:border-error-normal `}
+        } h-11 w-full overflow-hidden  aria-[invalid]:border-primary-normal `}
         suffixIcon={
           !disabled ? (
             <ChevronDownIcon
@@ -70,7 +73,7 @@ const Select: React.FC<IProps> = ({
       >
         {errors.map((error, index) => (
           <li key={`error-${placeholder}-${index}`}>
-            <div className="text-sm text-error-normal">{error}</div>
+            <div className="text-sm text-primary-normal">{error}</div>
           </li>
         ))}
       </ul>

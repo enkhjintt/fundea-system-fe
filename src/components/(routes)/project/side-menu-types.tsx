@@ -33,9 +33,9 @@ const SideMenu: React.FC<IProps> = ({ onClassChange, onStatusChange }) => {
   }, [data]);
 
   const statusOptions = [
-    { label: "Шинээр үүссэн", value: "Зөвшөөрсөн." },
-    { label: "Хугацаа дууссан (Амжилттай)", value: "Амжилттай төсөл" },
-    { label: "Хугацаа дууссан (Амжилтгүй)", value: "Хугацаа дууссан." },
+    { label: "Шинээр үүссэн", value: "Зөвшөөрсөн" },
+    { label: "Хугацаа дууссан (Амжилттай)", value: "Хэрэгжсэн" },
+    { label: "Хугацаа дууссан (Амжилтгүй)", value: "Амжилтгүй" },
   ];
 
   const percentageOptions = [

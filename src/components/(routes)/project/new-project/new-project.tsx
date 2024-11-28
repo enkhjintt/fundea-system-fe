@@ -21,7 +21,7 @@ const NewProjects: React.FC<IProps> = () => {
   );
 
   const { data, isLoading } = usePublicProject(undefined, {
-    tusul_tuluv_ner: "Зөвшөөрсөн.",
+    tusul_tuluv_ner: "Зөвшөөрсөн",
     tusul_turul_ner: typeSearch,
   });
   const router = useRouter();

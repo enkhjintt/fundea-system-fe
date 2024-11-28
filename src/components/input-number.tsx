@@ -57,8 +57,8 @@ const InputNumber: React.FC<IProps> = ({
         }  py-1 px-3 w-full ${heightClass} -mb-5 border ${
           variant !== "none"
             ? status === "error"
-              ? "border border-misc-100"
-              : "border border-gray-300"
+              ? "border border-primary-normal"
+              : "border-2 border-gray-100"
             : ""
         } ${!isLabeled && "-top-1"} ${
           disabled && "bg-base-white border-none text-gray-700 -ml-2"
@@ -81,7 +81,7 @@ const InputNumber: React.FC<IProps> = ({
         >
           {errors.map((error, index) => (
             <li key={`error-${placeholder}-${index}`} className="mr-2">
-              <div className="text-sm text-error-normal tracking-wide">
+              <div className="text-sm text-primary-normal tracking-wide">
                 {error}
               </div>
             </li>
