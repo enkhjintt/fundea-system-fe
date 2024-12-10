@@ -18,7 +18,6 @@ const ProjectHelp: React.FC = () => {
           <li>4. Төслийн төрөл сонгох: Урамшуулал/хандив</li>
           <li>5. Багийн гишүүдийн мэдээлэл оруулах</li>
           <li>6. Санхүүгийн мэдээлэл оруулах</li>
-          <li>7. Тухайн төсөлтэй холбоотой FAQ оруулах</li>
         </ul>
       ),
     },
@@ -85,14 +84,15 @@ const ProjectHelp: React.FC = () => {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-baseline">
-        <PageTitle title={"Түгээмэл асуулт хариултууд"} />
-        <Link href={"/project/add-project"}>
+        <PageTitle title={"Түгээмэл асуулт хариултууд"} 
+        button={<Link href={"/project/add-project"}>
         <Button
           icon={<PlusIcon />}
           placeholder="Төсөл оруулах"
           variant="gradient"
           textVariant="gradient"
-        /></Link>
+        /></Link>}/>
+        
 
       </div>
 

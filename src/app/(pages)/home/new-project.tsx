@@ -31,8 +31,10 @@ const NewProjects: React.FC<IProps> = () => {
 
   return (
     <>
-      <ProjectTypeItem />
-      <ProjectCategory />
+      <ProjectTypeItem onTypeChange={function (plan_type: string): void {
+        throw new Error("Function not implemented.");
+      } } />
+      {/* <ProjectCategory /> */}
       <PageTitle
         title={"styleVariant"}
         button={

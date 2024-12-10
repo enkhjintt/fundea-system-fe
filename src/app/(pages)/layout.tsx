@@ -64,7 +64,7 @@ export default function HomeLayout({
               }
             >
               <div>
-                <div className="px-20 mt-10">{children}</div>
+                <div className="">{children}</div>
               </div>
             </Suspense>
           </div>

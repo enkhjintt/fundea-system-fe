@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default function ProjectHelp() {
   return (
     <>
+      <TopImage />
       <SectionLayout>
-        <TopImage />
         <CollapseComponent />
       </SectionLayout>
     </>

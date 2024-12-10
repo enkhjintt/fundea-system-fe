@@ -32,13 +32,7 @@ const ImageContent: React.FC<{
 );
 
 const PlaceholderContent: React.FC = ({}) => {
-  return (
-    <div className="text-center font-normal text-xs text-gray-500">
-      <p>Зургийн өргөтгөл *.jpeg, *.jpg, *.png, *.gif</p>
-
-      <span>Хамгийн ихдээ 8.5 MB</span>
-    </div>
-  );
+  return <div className="text-center font-normal text-xs text-gray-500"></div>;
 };
 
 const UploadButton: React.FC = ({}) => {

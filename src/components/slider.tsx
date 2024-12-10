@@ -41,37 +41,34 @@ const SliderComponent: React.FC<SliderProps> = ({ min, max }) => {
             step={5000}
             value={value}
             onChange={handleChange}
-            className="w-full h-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg appearance-none"
+            className="w-full h-2 bg-gray-100 rounded-lg appearance-none"
           />
         </div>
       </div>
 
-      {/* Buttons Below the Slider */}
-      <div className="flex justify-between w-full max-w-lg mt-[-30px]">
-        {/* Decrease Button */}
+      <div className="flex justify-between items-center w-full max-w-lg my-1">
         <button
           onClick={decrement}
-          className="text-2xl text-blue-500 font-bold cursor-pointer"
+          className="text-2xl text-secondary-normal font-bold cursor-pointer"
         >
           -
         </button>
-        {/* Increase Button */}
+        <div className="text-lg font-bold text-gray-800" >
+        {value.toLocaleString()}₮
+      </div>
         <button
           onClick={increment}
-          className="text-2xl text-pink-500 font-bold cursor-pointer"
+          className="text-2xl text-secondary-normal font-bold cursor-pointer"
         >
           +
         </button>
       </div>
 
-      {/* Current Value */}
-      <div className="text-lg font-bold mt-[-30px]">
-          {value.toLocaleString()}₮
-      </div>
+      
 
       {/* Description */}
       <p className="text-xs text-gray-700 text-center">
-         *Мөнгөн дүн дээр дарж хүссэн дүнгээ бичиж оруулаарай.
+        *Мөнгөн дүн дээр дарж хүссэн дүнгээ оруулаарай.
       </p>
     </div>
   );

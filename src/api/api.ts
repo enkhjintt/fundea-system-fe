@@ -21,7 +21,9 @@ export async function api<T>({
 }): Promise<ApiResponse<T>> {
   const server = isServer(); // Check if the function is running on the server
 
-  const baseUrl = server ?  process.env.NEXT_PUBLIC_BACKEND_URL : process.env.NEXT_PUBLIC_BACKEND_URL;
+  const baseUrl = server
+    ? process.env.NEXT_PUBLIC_BACKEND_URL
+    : process.env.NEXT_PUBLIC_BACKEND_URL;
 
   // Use server-specific or client-specific logic
   const access_token = !server ? await iToken() : undefined;
@@ -121,14 +123,14 @@ export type SuccessResponse<T> = {
   };
 };
 
-type Error = {
+export type Error = {
   code: number;
   message: string;
 };
 
-type ErrorResponse = {
+export type ErrorResponse = {
   success: false;
   error: Error;
 };
 
-type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
+export type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;

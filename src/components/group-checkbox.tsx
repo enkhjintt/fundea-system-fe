@@ -6,7 +6,7 @@ import CheckboxComponent from "./checkbox";
 interface CheckboxGroupProps {
   label: string;
   options: { label: string; value: string }[];
-  onChange: (checkedValues: string[]) => void;
+  onChange: (checkedValue: string | null) => void;
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
@@ -14,15 +14,12 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   options,
   onChange,
 }) => {
-  const [checkedValues, setCheckedValues] = useState<string[]>([]);
+  const [checkedValue, setCheckedValue] = useState<string | null>(null);
 
   const handleCheckboxChange = (checked: boolean, value: string) => {
-    const newValues = checked
-      ? [...checkedValues, value]
-      : checkedValues.filter((item) => item !== value);
-
-    setCheckedValues(newValues);
-    onChange(newValues);
+    const newValue = checked ? value : null;
+    setCheckedValue(newValue);
+    onChange(newValue);
   };
 
   return (
@@ -34,7 +31,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
             <CheckboxComponent
               label={option.label}
               value={option.value}
-              checked={checkedValues.includes(option.value)}
+              checked={checkedValue === option.value}
               className="text-gray-600 transition-colors duration-200 hover:text-primary-normal"
               onChange={handleCheckboxChange}
             />

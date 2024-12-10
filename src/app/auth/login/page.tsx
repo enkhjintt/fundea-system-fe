@@ -16,19 +16,9 @@ const LoginPage = () => {
             // className="object-contain"
           />
         </div>
-
-        {/* <div className="relative ">
-            <Image
-              src="/svg/name.svg"
-              alt="Name Image"
-              priority
-              width="376"
-              height="111"
-            />
-          </div> */}
       </section>
 
-      <section className="w-1/2 flex flex-col justify-center items-center p-10 ">
+      <section className="w-1/2 flex flex-col justify-center items-center p-10 bg-base-white h-screen">
         <LoginForm />
       </section>
     </div>

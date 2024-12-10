@@ -178,10 +178,12 @@ const LoginForm: React.FC<TProps> = () => {
           <SubmitButton form={form} loading={loading} placeholder={"Нэвтрэх"} />
           <Title title={"Хэрвээ бүртгэл үүсгээгүй бол"} level={0} />
           <Button
-            loading={loading}
             placeholder="Бүртгүүлэх"
             variant="text"
             className="w-full"
+            onClick={() => {
+              router.push("/auth/sign-up");
+            }}
           />
         </div>
       </Form>

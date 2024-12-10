@@ -10,13 +10,13 @@ interface IconReminderProps {
 const IconReminder: React.FC<IconReminderProps> = ({
   icon, // Accepts custom icon
   message,
-  iconClassName = "", // Default empty class for icon
-  messageClassName = "", // Default empty class for message
+  iconClassName = "", 
+  messageClassName = "", 
 }) => {
   return (
-    <div className={`font-medium text-xs flex flex-row items-center gap-x-1 mt-2`}>
-      <span className={`${iconClassName}`}>{icon}</span> {/* Render passed icon */}
-      <span className={`${messageClassName}`}>{message}</span> {/* Render message */}
+    <div className={`font-medium text-xs text-gray-600 flex flex-row items-center gap-x-1 mt-2`}>
+      <span className={`${iconClassName}`}>{icon}</span> 
+      <span className={`${messageClassName}`}>{message}</span> 
     </div>
   );
 };

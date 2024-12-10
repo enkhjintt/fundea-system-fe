@@ -45,12 +45,12 @@ const PasswordInput: React.FC<TProps> = ({
           suffix: "ml-2",
         }}
         className={`${className} ${
-          isLabeled && "absolute -top-5 dark:bg-gray-100"
+          isLabeled && "absolute -top-5 "
         } py-2 px-3 w-full h-fit border ${
           variant !== "none"
             ? status === "error"
-              ? "border border-b-primary-normal"
-              : "border border-gray-300 "
+              ? "borde-2 border-gray-100"
+              : "border-2 border-gray-100 "
             : ""
         } ${!isLabeled && "-top-1"}  ${disabled && "bg-gray-100"}`}
         rootClassName={``}

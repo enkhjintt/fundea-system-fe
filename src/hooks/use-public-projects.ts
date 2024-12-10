@@ -8,11 +8,10 @@ import { ProjectResponse } from "@/api/projects";
 export function usePublicProject(
   pagination?: DefaultPagination,
   search?: {
-    garchig?: string;
-    tusul_turul_id?: number;
-    tusul_tuluv_id?: number;
-    sort_by: string;
-    sort_type: string;
+    // garchig?: string;
+    tusul_turul_ner?: string;
+    tusul_tuluv_ner?: string;
+    tusul_angilal_ner?: string;
     begin_date?: string;
     end_date?: string;
   }

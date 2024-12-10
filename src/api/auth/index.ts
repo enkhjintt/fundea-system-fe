@@ -46,3 +46,11 @@ export function checkOtp(data: { phone: string; otp: string }) {
     data,
   });
 }
+
+export function registerUser(data: FormData) {
+  return api({
+    url: "/auth/register",
+    method: "POST",
+    data,
+  });
+}

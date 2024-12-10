@@ -10,6 +10,7 @@ import Wrapper from "@/components/wrapper";
 import { useRouter } from "next/navigation";
 import { usePublicProjectById } from "@/hooks/use-public-projects";
 import { useState, useEffect } from "react";
+import { useProjectById } from "@/hooks/use-projects";
 
 interface IProps {
   id: number;
@@ -18,7 +19,7 @@ interface IProps {
 const ViewDonation: React.FC<IProps> = ({ id }) => {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
-  const { data, isLoading } = usePublicProjectById(id);
+  const { data, isLoading } = useProjectById(id);
 
   useEffect(() => {
     setLoading(isLoading);
@@ -36,11 +37,16 @@ const ViewDonation: React.FC<IProps> = ({ id }) => {
         title={data?.garchig || ""}
         subtitle={data?.ded_garchig || ""}
         description={data?.delgerengui || ""}
-        imageUrl={data?.zurag || "/default-image.jpg"}
+        imageUrl={data?.zurag || ""}
       />
 
       <div className="flex flex-row gap-8">
         <Wrapper className="w-3/4 grid grid-cols-1 p-6">
+          <div className=" flex justify-between">
+            <p className="text-md text-gray-600"># {data?.TusulAngilal.ner}</p>
+            <p className="text-md text-gray-600"># {data?.TusulTurul.ner}</p>
+          </div>
+
           <PinkTitle title={"Төслийн дэлгэрэнгүй"} desc={data?.delgerengui} />
           <PinkTitle title={"Төслийн түүх"} desc={data?.tuuh} />
           <PinkTitle title={"Төслийн эрсдэл"} desc={data?.ersdel} />
@@ -68,10 +74,15 @@ const ViewDonation: React.FC<IProps> = ({ id }) => {
           <ProjectProgressCardItem
             id={id}
             totalAmount={data?.sanhuujiltiin_dun || 0}
-            collectedAmount={0}
+            collectedAmount={data?.sum_sanhuujilt_dun || 0}
             remainingDays={0}
-            validProgress={0}
             progressColor="bg-secondary-normal"
+            donations={
+              data?.sanhuujilt_list?.map((item: any) => ({
+                user: item.hereglegch_ner,
+                userAmount: item.sanhuujilt_dun,
+              })) || []
+            }
           />
         </div>
       </div>
