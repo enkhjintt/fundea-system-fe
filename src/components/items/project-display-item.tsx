@@ -24,9 +24,9 @@ const ProjectDisplayItem: React.FC<ProjectDisplayItemProps> = ({
           <h1 className="text-4xl font-semibold text-gray-800">{title}</h1>
           <p className="text-base text-gray-700">{subtitle}</p>
         </div>
-        <div className="mt-4 mb-4 shadow-lg w-full h-[750px] relative rounded-b-lg">
+        <div className="mt-4 mb-4 shadow-lg w-full h-[600px] relative rounded-b-lg">
           <img
-            className="object-cover rounded-b-lg"
+            className="object-fill rounded-b-lg h-[600px] w-full"
             src={imageUrl}
             alt={description}
           />

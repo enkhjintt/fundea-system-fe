@@ -15,7 +15,6 @@ type IProps = {};
 const ProjectCategory: React.FC<IProps> = ({}) => {
   return (
     <>
- 
       <div className="flex flex-row gap-4 h-36">
         <Button
           variant="rectangle"

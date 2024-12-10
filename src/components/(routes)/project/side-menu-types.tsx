@@ -18,7 +18,7 @@ const SideMenu: React.FC<IProps> = ({ onClassChange, onStatusChange }) => {
   );
 
   // Handle checkbox change
-  const handleCheckboxChange = (checkedValues: string[]) => {
+  const handleCheckboxChange = (checkedValues: string | null) => {
     console.log("Checked values:", checkedValues);
   };
 
@@ -33,21 +33,21 @@ const SideMenu: React.FC<IProps> = ({ onClassChange, onStatusChange }) => {
   }, [data]);
 
   const statusOptions = [
-    { label: "Шинээр үүссэн", value: "Зөвшөөрсөн" },
-    { label: "Хугацаа дууссан (Амжилттай)", value: "Хэрэгжсэн" },
+    { label: "Шинээр үүссэн", value: "Шинэ төсөл" },
+    { label: "Хугацаа дууссан (Амжилттай)", value: "Амжилттай" },
     { label: "Хугацаа дууссан (Амжилтгүй)", value: "Амжилтгүй" },
   ];
 
-  const percentageOptions = [
-    { label: "50%", value: "1" },
-    { label: "50-75%", value: "2" },
-    { label: "75-100%", value: "3" },
-  ];
+  // const percentageOptions = [
+  //   { label: "50%", value: "1" },
+  //   { label: "50-75%", value: "2" },
+  //   { label: "75-100%", value: "3" },
+  // ];
 
-  const customerOptions = [
-    { label: "Хувь хүн", value: "1" },
-    { label: "Байгууллага", value: "2" },
-  ];
+  // const customerOptions = [
+  //   { label: "Хувь хүн", value: "1" },
+  //   { label: "Байгууллага", value: "2" },
+  // ];
 
   // Show loading state while data is being fetched
   if (isLoading) {
@@ -78,7 +78,7 @@ const SideMenu: React.FC<IProps> = ({ onClassChange, onStatusChange }) => {
           onChange={handleCheckboxChange}
         />
       </Form.Item>
-      <CheckboxGroup
+      {/* <CheckboxGroup
         label="Санхүүжилтийн хувь"
         options={percentageOptions}
         onChange={handleCheckboxChange}
@@ -87,7 +87,7 @@ const SideMenu: React.FC<IProps> = ({ onClassChange, onStatusChange }) => {
         label="Төсөл үүсгэгч төрөл"
         options={customerOptions}
         onChange={handleCheckboxChange}
-      />
+      /> */}
     </Form>
   );
 };

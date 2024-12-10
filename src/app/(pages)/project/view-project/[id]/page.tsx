@@ -5,7 +5,7 @@ import SectionLayout from "@/components/section-layout";
 import ViewDonation from "@/components/(routes)/project/view/view-donation";
 
 export const metadata: Metadata = {
-  title: "Төслийн дэлгэрэнггй",
+  title: "Төслийн дэлгэрэнгүй",
 };
 
 type IProps = {

@@ -43,7 +43,7 @@ const IconRadioGroup: React.FC<IconRadioGroupProps> = ({
         <Radio.Button
           key={option.value}
           value={option.value}
-          className={`h-10 rounded-md transition-all mx-2 border-base-white ${
+          className={`h-10 rounded-md transition-all mx-2 border-base-white mt-6 ${
             selectedValue === option.value
               ? "bg-gradient-to-r from-pink-normal to-secondary-normal text-base-white "
               : "border-2 border-primary-normal bg-base-white text-primary-normal"

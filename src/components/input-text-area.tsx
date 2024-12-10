@@ -28,7 +28,7 @@ const TextArea: React.FC<IProps> = ({
   loading = false,
   disabled,
   rounded = true,
-  size = "fit",
+  size = "lg",
   maxLength,
   showCounter = true,
   className,
@@ -48,13 +48,13 @@ const TextArea: React.FC<IProps> = ({
   }, [value]);
 
   const heightClasses = {
-    sm: "h-60",
+    sm: "h-40",
     md: "h-60",
-    lg: "h-60",
-    fit: "h-60",
+    lg: "h-56",
+    fit: "h-fit",
   };
 
-  const heightClass = heightClasses[size] || "h-fit";
+  const heightClass = heightClasses[size] || "h-60";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;

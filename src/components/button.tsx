@@ -15,7 +15,7 @@ const VARIANT = {
   link: "bg-transparent text-medium text-gray-700 underline leading-4",
   rectangle:
     "w-40 h-full bg-base-white border-primary-normal text-primary-normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal enabled:hover:text-base-white enabled:active:bg-secondary-light ",
-  text: "bg-base-white  text-primary-normal border-2 border-primary normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal ",
+  text: "bg-base-white  text-primary-normal border-2 border-primary-normal shadow-xs enabled:hover:bg-gradient-to-r to-secondary-normal from-pink-normal enabled:hover:text-base-white",
   icon: "bg-none border border-base-white w-fit h-fit shadow-none text-primary-normal",
 } as const;
 

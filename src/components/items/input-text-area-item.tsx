@@ -29,7 +29,7 @@ const TextAreaItem: React.FC<IProps> = ({
   maxLength,
   showCounter,
   allowClear,
-  size = "fit",
+  size = "lg",
   isLabeled = false,
   value,
   rules: rulesProps = [],

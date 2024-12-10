@@ -9,6 +9,7 @@ import ProjectTypeItem from "@/components/items/project-type-item";
 import { usePublicProject } from "@/hooks/use-public-projects";
 import { DefaultPagination, defaultPagination } from "@/constants";
 import { useDebouncedState } from "@/hooks/use-debounced-state";
+import Button from "@/components/button";
 
 type IProps = {
   initialTypeSearch?: string;
@@ -64,11 +65,13 @@ const AllProjects: React.FC<IProps> = () => {
     <>
       {/* Always displayed */}
       <div className="flex justify-between items-baseline">
-        <PageTitle title={"Бүх төсөл"} />
-        <ProjectTypeItem onTypeChange={handleTypeSearch} />
+        <PageTitle
+          title={"Бүх төсөл"}
+          button={<ProjectTypeItem onTypeChange={handleTypeSearch} />}
+        />
       </div>
       <div className="flex gap-10">
-        <Wrapper className="w-1/4 px-4">
+        <Wrapper className="w-1/4 px-4 h-fit">
           <SideMenu
             onClassChange={handleClassSearch}
             onStatusChange={handleStatusSearch}
@@ -87,7 +90,7 @@ const AllProjects: React.FC<IProps> = () => {
                 >
                   <CustomCard
                     author={`Төсөл санаачлагч: ${project.Hereglegch.ner}`}
-                    sizeVariant="medium"
+                    sizeVariant="small"
                     title={project.garchig}
                     description={project.ded_garchig}
                     imageSrc={project.zurag}

@@ -17,12 +17,12 @@ const Title: React.FC<IProps> = ({
 
   switch (level) {
     case 0:
-      style = "text-sm font-semibold text-base-white ";
+      style = "text-sm font-medium text-primary-normal ";
       break;
     case 1:
       break;
     case 2:
-      style = "text-base font-medium  my-3 text-gray-700";
+      style = "text-base font-medium  my-3 text-gray-800";
       break;
     case 3:
       style = "text-xl font-bold ";

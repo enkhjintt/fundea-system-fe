@@ -28,15 +28,15 @@ const sizeStyles: Record<
   }
 > = {
   small: {
-    width: 500,
-    height: 614,
+    width: 400,
+    height: 430,
     titleSize: "text-lg leading-5",
     descriptionSize: "text-sm",
-    imageHeight: 380,
+    imageHeight: 200,
   },
   medium: {
     width: 380,
-    height: 500,
+    height: 430,
     titleSize: "text-base leading-tight",
     descriptionSize: "text-sm leading-4 ",
     imageHeight: 200,

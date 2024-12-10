@@ -12,7 +12,7 @@ type IProps = {};
 const SuccessProjects: React.FC<IProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { data, isLoading } = usePublicProject(undefined, {
-    tusul_tuluv_ner: "Хэрэгжсэн",
+    tusul_tuluv_ner: "Амжилттай",
   });
   const router = useRouter();
 
@@ -39,7 +39,7 @@ const SuccessProjects: React.FC<IProps> = () => {
             variant="gradient"
             placeholder="Бүгдийг үзэх"
             className="w-full"
-            onClick={() => router.push("donation")}
+            onClick={() => router.push("/donation")}
           />
         }
       />

@@ -7,11 +7,10 @@ import Wrapper from "@/components/wrapper";
 export default function HomeForm() {
   return (
     <>
-      <SectionLayout>
-        <Wrapper className="h-100 bg-gradient-to-r to-secondary-normal from-pink-normal">
+
+        <Wrapper className="h-full ">
           <TopImage />
         </Wrapper>
-      </SectionLayout>
     </>
   );
 }

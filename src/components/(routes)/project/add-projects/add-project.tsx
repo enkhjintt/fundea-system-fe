@@ -32,8 +32,8 @@ type IFormItem = {
   aimag_code: string;
   sum_code: string;
   horoo_code: string;
-  zurag: File | null; // File object
-  cover_zurag: File | null; // Single string for the cover image path
+  zurag: File | null;
+  cover_zurag: File | null;
 };
 
 const AddProjectForm: React.FC<IProps> = () => {
@@ -53,7 +53,6 @@ const AddProjectForm: React.FC<IProps> = () => {
     form.setFieldValue("horoo_code", undefined);
   };
 
-  // Function to handle image upload
   const handleFileUpload = (
     e: React.ChangeEvent<HTMLInputElement>,
     setImagePath: React.Dispatch<React.SetStateAction<File | null>>
@@ -68,7 +67,6 @@ const AddProjectForm: React.FC<IProps> = () => {
     setLoading(true);
 
     try {
-      // Create FormData instance
       const formData = new FormData();
       formData.append("garchig", values.garchig);
       formData.append("ded_garchig", values.ded_garchig);
@@ -93,13 +91,17 @@ const AddProjectForm: React.FC<IProps> = () => {
         formData.append("zurag", projectImage);
       }
 
-      // Send the form data
-      const response = await CreateProject(formData);
+      const createResponse = await CreateProject(formData);
 
-      if (response.success) {
-        success("Төсөл амжилттай илгээгдлээ!");
-        router.push("/home");
-        form.resetFields();
+      if (createResponse.success) {
+        const projectId = createResponse.data?.tusul_id?.id;
+
+        if (projectId) {
+          success("Төсөл амжилттай илгээгдлээ!");
+          router.push(`/bonus/add?tusulId=${projectId}`); // Pass tusul_id in the URL
+        } else {
+          error("Төслийн ID-г авахад алдаа гарлаа!");
+        }
       } else {
         throw new Error("Алдаа гарлаа!");
       }
@@ -126,8 +128,8 @@ const AddProjectForm: React.FC<IProps> = () => {
             <InputItem name="garchig" label="Гарчиг" required />
             <InputItem name="ded_garchig" label="Дэд гарчиг" required />
             <SelectProjectClassItem required />
-            {/* Cover Image Upload */}
-            {/* <div>
+
+            <div>
               <label>Cover Image:</label>
               <input
                 type="file"
@@ -135,8 +137,7 @@ const AddProjectForm: React.FC<IProps> = () => {
                 onChange={(e) => handleFileUpload(e, setCoverImage)}
               />
               {coverImage && <p>Uploaded Cover Image: {coverImage.name}</p>}
-            </div> */}
-            {/* Single Project Image Upload */}
+            </div>
             <div className="mb-4">
               <label className="text-gray-600 text-sm font-light pb-2">
                 Төслийн зураг
